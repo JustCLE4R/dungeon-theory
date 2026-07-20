@@ -1,0 +1,234 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --color-gold: var(--gold);
+  --color-gold-bright: var(--gold-bright);
+  --color-gold-soft: var(--gold-soft);
+  --color-arcane: var(--arcane);
+  --color-arcane-bright: var(--arcane-bright);
+  --color-arcane-deep: var(--arcane-deep);
+  --color-parchment: var(--parchment);
+  --color-ink: var(--ink);
+  --color-obsidian: var(--obsidian);
+
+  --font-display: "Cinzel", serif;
+  --font-body: "Inter", sans-serif;
+}
+
+:root {
+  --radius: 0.5rem;
+
+  /* Foundation - obsidian & navy */
+  --background: oklch(0.14 0.02 275);
+  --foreground: oklch(0.97 0.005 90);
+  --obsidian: oklch(0.10 0.015 275);
+  --ink: oklch(0.18 0.025 275);
+
+  --card: oklch(0.17 0.025 275);
+  --card-foreground: oklch(0.97 0.005 90);
+  --popover: oklch(0.17 0.025 275);
+  --popover-foreground: oklch(0.97 0.005 90);
+
+  /* Arcane purple */
+  --arcane-deep: oklch(0.30 0.14 300);
+  --arcane: oklch(0.55 0.22 300);
+  --arcane-bright: oklch(0.68 0.22 300);
+
+  /* Gold */
+  --gold: oklch(0.72 0.13 80);
+  --gold-bright: oklch(0.82 0.15 82);
+  --gold-soft: oklch(0.85 0.10 85);
+
+  /* Parchment */
+  --parchment: oklch(0.90 0.02 85);
+
+  --primary: oklch(0.72 0.13 80);         /* gold */
+  --primary-foreground: oklch(0.12 0.02 275);
+  --secondary: oklch(0.55 0.22 300);      /* arcane */
+  --secondary-foreground: oklch(0.97 0.005 90);
+  --muted: oklch(0.22 0.02 275);
+  --muted-foreground: oklch(0.70 0.015 85);
+  --accent: oklch(0.30 0.14 300);
+  --accent-foreground: oklch(0.97 0.005 90);
+  --destructive: oklch(0.60 0.22 25);
+  --destructive-foreground: oklch(0.97 0 0);
+  --border: oklch(0.72 0.13 80 / 20%);
+  --input: oklch(0.72 0.13 80 / 25%);
+  --ring: oklch(0.68 0.22 300);
+
+  --chart-1: var(--gold);
+  --chart-2: var(--arcane);
+  --chart-3: var(--arcane-bright);
+  --chart-4: var(--gold-bright);
+  --chart-5: var(--parchment);
+
+  /* Gradients & shadows */
+  --gradient-hero: radial-gradient(ellipse at 50% 30%, oklch(0.30 0.14 300 / 0.35), transparent 60%),
+                   radial-gradient(ellipse at 80% 80%, oklch(0.55 0.22 300 / 0.15), transparent 55%),
+                   linear-gradient(180deg, oklch(0.10 0.015 275) 0%, oklch(0.14 0.02 275) 100%);
+  --gradient-gold: linear-gradient(135deg, oklch(0.82 0.15 82), oklch(0.62 0.14 70));
+  --gradient-arcane: linear-gradient(135deg, oklch(0.55 0.22 300), oklch(0.35 0.16 290));
+  --gradient-divider: linear-gradient(90deg, transparent, oklch(0.72 0.13 80 / 0.6), transparent);
+
+  --shadow-arcane: 0 0 40px oklch(0.55 0.22 300 / 0.35), 0 0 80px oklch(0.55 0.22 300 / 0.15);
+  --shadow-gold: 0 0 30px oklch(0.72 0.13 80 / 0.35);
+  --shadow-elegant: 0 20px 60px -20px oklch(0.05 0 0 / 0.8);
+}
+
+.dark { color-scheme: dark; }
+
+@layer base {
+  * { border-color: var(--color-border); }
+  html { scroll-behavior: smooth; }
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-body);
+    background-image:
+      radial-gradient(circle at 20% 10%, oklch(0.32 0.14 300 / 0.12), transparent 40%),
+      radial-gradient(circle at 80% 60%, oklch(0.55 0.22 300 / 0.08), transparent 45%);
+    background-attachment: fixed;
+  }
+  h1, h2, h3, h4, h5 {
+    font-family: var(--font-display);
+    letter-spacing: 0.02em;
+  }
+  ::selection { background: var(--arcane); color: white; }
+}
+
+@utility font-display { font-family: var(--font-display); }
+@utility font-body { font-family: var(--font-body); }
+
+@utility text-gold { color: var(--gold-bright); }
+@utility text-arcane { color: var(--arcane-bright); }
+@utility text-parchment { color: var(--parchment); }
+
+@utility bg-obsidian { background-color: var(--obsidian); }
+@utility bg-ink { background-color: var(--ink); }
+
+@utility gradient-hero { background: var(--gradient-hero); }
+@utility gradient-gold-text {
+  background: var(--gradient-gold);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+@utility gradient-arcane-text {
+  background: linear-gradient(135deg, oklch(0.82 0.15 82), oklch(0.68 0.22 300));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+@utility divider-gold {
+  height: 1px;
+  background: var(--gradient-divider);
+}
+
+@utility card-arcane {
+  background: linear-gradient(180deg, oklch(0.19 0.03 280 / 0.9), oklch(0.14 0.02 275 / 0.9));
+  border: 1px solid oklch(0.72 0.13 80 / 0.18);
+  backdrop-filter: blur(8px);
+  transition: transform 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
+}
+@utility card-arcane-hover {
+  &:hover {
+    transform: translateY(-4px);
+    border-color: oklch(0.72 0.13 80 / 0.5);
+    box-shadow: var(--shadow-gold);
+  }
+}
+
+@utility btn-gold {
+  background: var(--gradient-gold);
+  color: oklch(0.12 0.02 275);
+  border: 1px solid oklch(0.82 0.15 82);
+  box-shadow: 0 0 0 1px oklch(0.72 0.13 80 / 0.4), var(--shadow-gold);
+  transition: all 0.3s ease;
+  &:hover {
+    box-shadow: 0 0 0 1px oklch(0.82 0.15 82 / 0.8), 0 0 40px oklch(0.72 0.13 80 / 0.6);
+    transform: translateY(-1px);
+  }
+}
+@utility btn-arcane {
+  background: transparent;
+  color: var(--parchment);
+  border: 1px solid oklch(0.68 0.22 300 / 0.5);
+  transition: all 0.3s ease;
+  &:hover {
+    background: oklch(0.55 0.22 300 / 0.15);
+    border-color: oklch(0.68 0.22 300 / 0.9);
+    box-shadow: var(--shadow-arcane);
+  }
+}
+
+@utility rune-ring {
+  position: relative;
+  &::before {
+    content: "";
+    position: absolute;
+    inset: -12px;
+    border-radius: 50%;
+    border: 1px solid oklch(0.72 0.13 80 / 0.3);
+    animation: rune-spin 40s linear infinite;
+    pointer-events: none;
+  }
+  &::after {
+    content: "";
+    position: absolute;
+    inset: -24px;
+    border-radius: 50%;
+    border: 1px dashed oklch(0.68 0.22 300 / 0.25);
+    animation: rune-spin 60s linear infinite reverse;
+    pointer-events: none;
+  }
+}
+
+@keyframes rune-spin {
+  to { transform: rotate(360deg); }
+}
+@keyframes float-slow {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+@keyframes glow-pulse {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 1; }
+}
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@utility animate-float-slow { animation: float-slow 6s ease-in-out infinite; }
+@utility animate-glow-pulse { animation: glow-pulse 4s ease-in-out infinite; }
+@utility animate-fade-up { animation: fade-up 0.9s ease-out both; }

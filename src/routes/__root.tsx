@@ -1,0 +1,134 @@
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import {
+  Outlet,
+  Link,
+  createRootRouteWithContext,
+  useRouter,
+  HeadContent,
+  Scripts,
+} from "@tanstack/react-router";
+import { useEffect, type ReactNode } from "react";
+
+import appCss from "../styles.css?url";
+import faviconAsset from "../assets/favicon.png";
+
+function NotFoundComponent() {
+  return (
+    <div className="flex min-h-screen items-center justify-center bg-background px-4">
+      <div className="max-w-md text-center">
+        <h1 className="font-display text-7xl font-bold gradient-gold-text">404</h1>
+        <h2 className="mt-4 text-xl font-semibold text-foreground">Lost in the dungeon</h2>
+        <p className="mt-2 text-sm text-muted-foreground">
+          This passage does not exist in the archive.
+        </p>
+        <div className="mt-6">
+          <Link
+            to="/"
+            className="btn-gold inline-flex items-center justify-center rounded-md px-5 py-2.5 text-sm font-semibold"
+          >
+            Return to the Hall
+          </Link>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
+  const router = useRouter();
+  useEffect(() => {
+    console.error(error);
+  }, [error]);
+
+  return (
+    <div className="flex min-h-screen items-center justify-center bg-background px-4">
+      <div className="max-w-md text-center">
+        <h1 className="font-display text-2xl text-foreground">The scroll is torn</h1>
+        <p className="mt-2 text-sm text-muted-foreground">
+          Something went wrong loading this page.
+        </p>
+        <div className="mt-6 flex flex-wrap justify-center gap-2">
+          <button
+            onClick={() => {
+              router.invalidate();
+              reset();
+            }}
+            className="btn-gold rounded-md px-4 py-2 text-sm font-semibold"
+          >
+            Try again
+          </button>
+          <a href="/" className="btn-arcane rounded-md px-4 py-2 text-sm">
+            Home
+          </a>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()({
+  head: () => ({
+    meta: [
+      { charSet: "utf-8" },
+      { name: "viewport", content: "width=device-width, initial-scale=1" },
+      { title: "Dungeon Theory — Understand the Run. Master the Dungeon." },
+      {
+        name: "description",
+        content:
+          "Dungeon Theory is an Albion Online community and guild built around knowledge, teamwork, and progression. Learn together. Grow together. Conquer together.",
+      },
+      { name: "author", content: "Dungeon Theory" },
+      { property: "og:site_name", content: "Dungeon Theory" },
+      { property: "og:title", content: "Dungeon Theory — Understand the Run. Master the Dungeon." },
+      {
+        property: "og:description",
+        content:
+          "An Albion Online community and guild built around knowledge, teamwork, and progression.",
+      },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "Dungeon Theory" },
+      {
+        name: "twitter:description",
+        content: "Understand the run. Master the dungeon.",
+      },
+    ],
+    links: [
+      { rel: "stylesheet", href: appCss },
+      { rel: "icon", href: faviconAsset, type: "image/png" },
+      { rel: "preconnect", href: "https://fonts.googleapis.com" },
+      { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
+      {
+        rel: "stylesheet",
+        href: "https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap",
+      },
+    ],
+  }),
+  shellComponent: RootShell,
+  component: RootComponent,
+  notFoundComponent: NotFoundComponent,
+  errorComponent: ErrorComponent,
+});
+
+function RootShell({ children }: { children: ReactNode }) {
+  return (
+    <html lang="en" className="dark">
+      <head>
+        <HeadContent />
+      </head>
+      <body>
+        {children}
+        <Scripts />
+      </body>
+    </html>
+  );
+}
+
+function RootComponent() {
+  const { queryClient } = Route.useRouteContext();
+  return (
+    <QueryClientProvider client={queryClient}>
+      <Outlet />
+    </QueryClientProvider>
+  );
+}
