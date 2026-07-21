@@ -65,7 +65,7 @@ export default function ParticleCanvas({ className = "" }: { className?: string 
       opacity: 0,
       color: colors[Math.floor(Math.random() * colors.length)],
       life: 0,
-      maxLife: Math.random() * 200 + 150, // lifespan in frames
+      maxLife: Math.random() * 300 + 150, // lifespan in frames
     });
 
     // Initialize a set of particles so the canvas isn't empty on first paint

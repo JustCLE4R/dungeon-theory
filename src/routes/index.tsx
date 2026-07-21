@@ -1,5 +1,18 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
+import {
+  BookOpen,
+  Brain,
+  Castle,
+  Flame,
+  Handshake,
+  Shield,
+  Sparkles,
+  Swords,
+  Trophy,
+  Users,
+  type LucideIcon,
+} from "lucide-react";
 import heroBg from "../assets/hero-bg.jpg";
 import ParticleCanvas from "../components/ParticleCanvas";
 import mainLogo from "../assets/main-logo.png";
@@ -30,6 +43,8 @@ function LandingPage() {
     </div>
   );
 }
+
+type LandingIcon = LucideIcon;
 
 /* ---------------- NAV ---------------- */
 function Nav() {
@@ -176,7 +191,7 @@ function Hero() {
           — An Albion Online Community & Guild —
         </p>
 
-        <h1 className="mt-4 font-display text-4xl font-bold uppercase leading-tight tracking-wider text-parchment sm:text-6xl md:text-7xl">
+        <h1 className="mt-4 font-display text-2xl font-bold uppercase leading-tight tracking-wider text-parchment sm:text-4xl md:text-5xl">
           Understand the Run.<br />
           <span className="gradient-gold-text">Master the Dungeon.</span>
         </h1>
@@ -233,7 +248,7 @@ function WhatIs() {
   return (
     <section className="relative py-24 sm:py-32">
       <div className="mx-auto max-w-4xl px-4 text-center sm:px-6">
-        <SectionEyebrow>Chapter I</SectionEyebrow>
+        <SectionEyebrow>The Foundation</SectionEyebrow>
         <h2 className="mt-4 font-display text-4xl font-bold uppercase tracking-wider text-parchment sm:text-5xl">
           More Than a <span className="gradient-gold-text">Dungeon</span>
         </h2>
@@ -269,11 +284,11 @@ function WhatIs() {
 
 /* ---------------- PHILOSOPHY ---------------- */
 function Philosophy() {
-  const pillars = [
-    { icon: "📚", title: "Learn", text: "Understand the mechanics. Study the dungeon before you enter it." },
-    { icon: "⚔️", title: "Practice", text: "Put knowledge into action. The theory only matters in the field." },
-    { icon: "🤝", title: "Coordinate", text: "Improve through teamwork. A party is greater than its parts." },
-    { icon: "🏆", title: "Progress", text: "Grow together, one run at a time. Every fall becomes footing." },
+  const pillars: Array<{ icon: LandingIcon; title: string; text: string }> = [
+    { icon: BookOpen, title: "Learn", text: "Understand the mechanics. Study the dungeon before you enter it." },
+    { icon: Swords, title: "Practice", text: "Put knowledge into action. The theory only matters in the field." },
+    { icon: Users, title: "Coordinate", text: "Improve through teamwork. A party is greater than its parts." },
+    { icon: Trophy, title: "Progress", text: "Grow together, one run at a time. Every fall becomes footing." },
   ];
   return (
     <section id="philosophy" className="relative border-y border-gold/10 bg-obsidian/60 py-24 sm:py-32">
@@ -299,8 +314,8 @@ function Philosophy() {
             >
               <div className="pointer-events-none absolute -right-8 -top-8 h-32 w-32 rounded-full bg-arcane/10 blur-2xl transition-opacity group-hover:opacity-70" />
               <div className="mb-4 flex items-center justify-between">
-                <span className="text-3xl" aria-hidden>{p.icon}</span>
-                <span className="font-display text-xs tracking-widest text-gold/60">0{i + 1}</span>
+                <p.icon className="h-8 w-8 text-gold/90" aria-hidden />
+                {/* <span className="font-display text-xs tracking-widest text-gold/60">0{i + 1}</span> */}
               </div>
               <h3 className="font-display text-xl font-bold uppercase tracking-wider text-parchment">
                 {p.title}
@@ -337,7 +352,9 @@ function CommunityVsGuild() {
             <div className="absolute right-6 top-6 font-display text-xs uppercase tracking-[0.3em] text-arcane">
               Open Hall
             </div>
-            <span className="text-4xl" aria-hidden>🕯️</span>
+            <div className="grid h-12 w-12 place-items-center rounded-lg border border-arcane/30 bg-obsidian/80">
+              <Flame className="h-7 w-7 text-arcane-bright" aria-hidden />
+            </div>
             <h3 className="mt-4 font-display text-3xl font-bold uppercase tracking-wider text-parchment">
               Community
             </h3>
@@ -367,7 +384,9 @@ function CommunityVsGuild() {
             <div className="absolute right-6 top-6 font-display text-xs uppercase tracking-[0.3em] text-gold">
               Sworn Order
             </div>
-            <span className="text-4xl" aria-hidden>🛡️</span>
+            <div className="grid h-12 w-12 place-items-center rounded-lg border border-gold/30 bg-obsidian/80">
+              <Shield className="h-7 w-7 text-gold" aria-hidden />
+            </div>
             <h3 className="mt-4 font-display text-3xl font-bold uppercase tracking-wider gradient-gold-text">
               The Guild
             </h3>
@@ -408,7 +427,7 @@ function Theorybound() {
       <div className="mx-auto max-w-4xl px-4 text-center sm:px-6">
         <SectionEyebrow>The Bound</SectionEyebrow>
         <div className="mt-6 inline-flex items-center gap-3 rounded-full border border-gold/40 bg-obsidian/80 px-5 py-2 backdrop-blur">
-          <span aria-hidden>📚</span>
+          <BookOpen className="h-4 w-4 text-gold" aria-hidden />
           <span className="font-display text-sm font-semibold uppercase tracking-[0.35em] text-gold">
             Theorybound
           </span>
@@ -441,13 +460,13 @@ function Theorybound() {
 
 /* ---------------- EXPECT ---------------- */
 function Expect() {
-  const items = [
-    { icon: "📖", title: "Learn", text: "Guides, mechanics, and knowledge shared by the community." },
-    { icon: "⚔️", title: "Group Content", text: "Find players and run dungeons together, at any time." },
-    { icon: "🧠", title: "Analyze", text: "Learn from mistakes and refine every future run." },
-    { icon: "🤝", title: "Find Your Party", text: "Connect with players who love the content you love." },
-    { icon: "🏰", title: "Guild Progression", text: "Grow together as part of the Dungeon Theory guild." },
-    { icon: "🎉", title: "Community Events", text: "Milestones, gatherings, and activities throughout the year." },
+  const items: Array<{ icon: LandingIcon; title: string; text: string }> = [
+    { icon: BookOpen, title: "Learn", text: "Guides, mechanics, and knowledge shared by the community." },
+    { icon: Swords, title: "Group Content", text: "Find players and run dungeons together, at any time." },
+    { icon: Brain, title: "Analyze", text: "Learn from mistakes and refine every future run." },
+    { icon: Handshake, title: "Find Your Party", text: "Connect with players who love the content you love." },
+    { icon: Castle, title: "Guild Progression", text: "Grow together as part of the Dungeon Theory guild." },
+    { icon: Sparkles, title: "Community Events", text: "Milestones, gatherings, and activities throughout the year." },
   ];
   return (
     <section className="relative border-y border-gold/10 bg-obsidian/60 py-24 sm:py-32">
@@ -466,8 +485,8 @@ function Expect() {
               key={it.title}
               className="card-arcane card-arcane-hover group relative overflow-hidden rounded-xl p-6"
             >
-              <div className="mb-4 grid h-12 w-12 place-items-center rounded-lg border border-gold/30 bg-obsidian/80 text-2xl">
-                {it.icon}
+              <div className="mb-4 grid h-12 w-12 place-items-center rounded-lg border border-gold/30 bg-obsidian/80">
+                <it.icon className="h-7 w-7 text-gold/90" aria-hidden />
               </div>
               <h3 className="font-display text-lg font-bold uppercase tracking-wider text-parchment">
                 {it.title}
@@ -501,10 +520,10 @@ function Journey() {
           <div className="mx-auto mt-6 h-px w-24 bg-gold/50" />
         </div>
 
-        <ol className="relative mt-16 space-y-8 border-l border-gold/20 pl-8 sm:pl-12">
+        <ol className="relative mt-16 space-y-8 before:absolute before:inset-y-0 before:left-4 before:w-px before:bg-gold/20 sm:before:left-4">
           {chapters.map((c, i) => (
-            <li key={c.title} className="relative">
-              <span className="absolute -left-[41px] top-1 grid h-8 w-8 place-items-center rounded-full border border-gold/60 bg-obsidian font-display text-xs font-bold text-gold sm:-left-[57px]">
+            <li key={c.title} className="relative grid grid-cols-[2rem_1fr] items-center gap-x-5 sm:gap-x-6">
+              <span className="relative z-10 grid h-8 w-8 place-items-center justify-self-center rounded-full border border-gold/60 bg-obsidian font-display text-xs font-bold text-gold">
                 {String(i + 1).padStart(2, "0")}
               </span>
               <div className="card-arcane rounded-lg p-5 sm:p-6">
@@ -570,8 +589,8 @@ function FinalCTA() {
           rel="noopener noreferrer"
           className="btn-gold mt-10 inline-flex items-center gap-3 rounded-md px-10 py-4 font-display text-sm font-semibold uppercase tracking-[0.3em]"
         >
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden>
-            <path d="M20.317 4.369A19.79 19.79 0 0 0 16.558 3.2a.075.075 0 0 0-.079.037c-.211.375-.444.864-.608 1.249a18.27 18.27 0 0 0-5.487 0 12.51 12.51 0 0 0-.617-1.249.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 5.93 4.369a.07.07 0 0 0-.032.027C2.533 9.045 1.6 13.579 2.058 18.057a.082.082 0 0 0 .031.056 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.104 13.1 13.1 0 0 1-1.872-.892.077.077 0 0 1-.008-.128c.126-.094.252-.192.372-.291a.074.074 0 0 1 .078-.01c3.927 1.793 8.18 1.793 12.061 0a.074.074 0 0 1 .079.009c.12.099.246.198.373.292a.077.077 0 0 1-.006.128 12.3 12.3 0 0 1-1.873.891.077.077 0 0 0-.041.105c.36.699.772 1.363 1.225 1.993a.076.076 0 0 0 .084.029 19.84 19.84 0 0 0 6.002-3.03.077.077 0 0 0 .032-.055c.5-5.177-.838-9.674-3.548-13.66a.061.061 0 0 0-.031-.028zM8.02 15.331c-1.183 0-2.157-1.086-2.157-2.419 0-1.334.955-2.42 2.157-2.42 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.419-2.157 2.419zm7.975 0c-1.183 0-2.157-1.086-2.157-2.419 0-1.334.955-2.42 2.157-2.42 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.419-2.157 2.419z" />
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+            <path d="M13.545 2.907a13.2 13.2 0 0 0-3.257-1.011.05.05 0 0 0-.052.025c-.141.25-.297.577-.406.833a12.2 12.2 0 0 0-3.658 0 8 8 0 0 0-.412-.833.05.05 0 0 0-.052-.025c-1.125.194-2.22.534-3.257 1.011a.04.04 0 0 0-.021.018C.356 6.024-.213 9.047.066 12.032q.003.022.021.037a13.3 13.3 0 0 0 3.995 2.02.05.05 0 0 0 .056-.019q.463-.63.818-1.329a.05.05 0 0 0-.01-.059l-.018-.011a9 9 0 0 1-1.248-.595.05.05 0 0 1-.02-.066l.015-.019q.127-.095.248-.195a.05.05 0 0 1 .051-.007c2.619 1.196 5.454 1.196 8.041 0a.05.05 0 0 1 .053.007q.121.1.248.195a.05.05 0 0 1-.004.085 8 8 0 0 1-1.249.594.05.05 0 0 0-.03.03.05.05 0 0 0 .003.041c.24.465.515.909.817 1.329a.05.05 0 0 0 .056.019 13.2 13.2 0 0 0 4.001-2.02.05.05 0 0 0 .021-.037c.334-3.451-.559-6.449-2.366-9.106a.03.03 0 0 0-.02-.019m-8.198 7.307c-.789 0-1.438-.724-1.438-1.612s.637-1.613 1.438-1.613c.807 0 1.45.73 1.438 1.613 0 .888-.637 1.612-1.438 1.612m5.316 0c-.788 0-1.438-.724-1.438-1.612s.637-1.613 1.438-1.613c.807 0 1.451.73 1.438 1.613 0 .888-.631 1.612-1.438 1.612"/>
           </svg>
           Join the Discord
         </a>
