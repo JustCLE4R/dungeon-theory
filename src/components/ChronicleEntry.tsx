@@ -1,4 +1,5 @@
 import { ChevronDown, type LucideIcon } from "lucide-react";
+import type { CSSProperties } from "react";
 import { cn } from "@/lib/utils";
 import type { ChronicleEvent } from "@/data/chronicles";
 
@@ -29,7 +30,7 @@ export function ChronicleEntry({ event, isOpen, onToggle, isLast }: ChronicleEnt
   };
 
   return (
-    <li className="relative group" style={{ "--gold": "oklch(0.72 0.13 80)" }}>
+    <li className="relative group" style={{ "--gold": "oklch(0.72 0.13 80)" } as CSSProperties}>
       {!isLast && (
         <div
           className="absolute left-[1rem] top-0 bottom-0 w-px"
@@ -82,10 +83,10 @@ export function ChronicleEntry({ event, isOpen, onToggle, isLast }: ChronicleEnt
         aria-labelledby={`chronicle-trigger-${event.id}`}
         className={cn(
           "overflow-hidden transition-all duration-300 ease-in-out",
-          isOpen ? "opacity-100 max-h-96 mt-4" : "opacity-0 max-h-0 mt-0"
+                isOpen ? "opacity-100 max-h-[85vh] sm:max-h-96 mt-4" : "opacity-0 max-h-0 mt-0"
         )}
       >
-        <div className="card-arcane relative rounded-xl border border-gold/20 bg-obsidian/60 p-6 sm:p-8 animate-fade-up">
+              <div className="card-arcane relative rounded-xl border border-gold/20 bg-obsidian/60 p-4 sm:p-6 lg:p-8 animate-fade-up">
           <div className="mb-4 flex items-center gap-3">
             <time className="font-body text-xs uppercase tracking-[0.2em] text-gold/70" dateTime={event.date}>
               {formatDate(event.date)}

@@ -1,4 +1,5 @@
 import { Sparkles } from "lucide-react";
+import { useState } from "react";
 import chroniclesDataRaw from "@/data/chronicles.json";
 import { ChronicleEntry } from "./ChronicleEntry";
 
@@ -20,6 +21,20 @@ export function ChronicleTimeline() {
   const events = [...chroniclesData].sort((a, b) => a.date.localeCompare(b.date));
   const groupedByYear = groupEventsByYear(events);
   const years = Object.keys(groupedByYear).sort();
+
+  // Track open state for each event by ID
+  // Use array for SSR compatibility (Sets don't serialize well)
+  const [openIds, setOpenIds] = useState<string[]>([]);
+
+  const toggleEvent = (eventId: string) => {
+    setOpenIds((prev) => {
+      if (prev.includes(eventId)) {
+        return prev.filter((id) => id !== eventId);
+      }
+      // Close all others, open only this one
+      return [eventId];
+    });
+  };
 
   return (
     <ol className="relative space-y-12" role="list" aria-label="Chronicles timeline">
@@ -46,6 +61,8 @@ export function ChronicleTimeline() {
                   <ChronicleEntry
                     key={event.id}
                     event={event}
+                                      isOpen={openIds.includes(event.id)}
+                    onToggle={() => toggleEvent(event.id)}
                     isLast={eventIndex === yearEvents.length - 1 && yearIndex === years.length - 1}
                   />
                 ))}

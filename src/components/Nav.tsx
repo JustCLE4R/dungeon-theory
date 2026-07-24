@@ -19,18 +19,14 @@ export function Nav({ isChroniclesPage = false }: NavProps) {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  const links = isChroniclesPage
-    ? [
-        { href: "/", label: "Home" },
-        { href: "/chronicles", label: "Chronicles" },
-      ]
-    : [
-        { href: "#home", label: "Home" },
-        { href: "#philosophy", label: "Philosophy" },
-        { href: "#community", label: "Community" },
-        { href: "#guild", label: "Guild" },
-        { href: "/chronicles", label: "Chronicles" },
-      ];
+  // Static navigation links - anchor links always point to root with hash
+  // so they work correctly from any page
+  const navLinks = [
+    { href: "/#home", label: "Home" },
+    { href: "/#philosophy", label: "Philosophy" },
+    { href: "/#community", label: "Community" },
+    { href: "/#guild", label: "Guild" },
+  ];
 
   return (
     <header
@@ -58,15 +54,21 @@ export function Nav({ isChroniclesPage = false }: NavProps) {
         </Link>
 
         <nav className="hidden items-center gap-8 md:flex">
-          {links.map((l) => (
-            <Link
+          {navLinks.map((l) => (
+            <a
               key={l.href}
-              to={l.href}
+              href={l.href}
               className="font-body text-sm uppercase tracking-widest text-muted-foreground transition-colors hover:text-gold"
             >
               {l.label}
-            </Link>
+            </a>
           ))}
+          <Link
+            to="/chronicles"
+            className="font-body text-sm uppercase tracking-widest text-muted-foreground transition-colors hover:text-gold"
+          >
+            Chronicles
+          </Link>
         </nav>
 
         <div className="flex items-center gap-2">
@@ -93,20 +95,28 @@ export function Nav({ isChroniclesPage = false }: NavProps) {
       {open && (
         <div className="border-t border-gold/20 bg-obsidian/95 backdrop-blur-lg md:hidden">
           <div className="flex flex-col gap-1 px-6 py-4">
-            {links.map((l) => (
-              <Link
+            {navLinks.map((l) => (
+              <a
                 key={l.href}
-                to={l.href}
+                href={l.href}
                 onClick={() => setOpen(false)}
                 className="rounded-md px-2 py-3 font-body text-sm uppercase tracking-widest text-parchment hover:bg-arcane/10 hover:text-gold"
               >
                 {l.label}
-              </Link>
+              </a>
             ))}
+            <Link
+              to="/chronicles"
+              onClick={() => setOpen(false)}
+              className="rounded-md px-2 py-3 font-body text-sm uppercase tracking-widest text-parchment hover:bg-arcane/10 hover:text-gold"
+            >
+              Chronicles
+            </Link>
             <a
               href={DISCORD_URL}
               target="_blank"
               rel="noopener noreferrer"
+              onClick={() => setOpen(false)}
               className="btn-gold mt-2 rounded-md px-4 py-3 text-center text-xs font-semibold uppercase tracking-widest"
             >
               Join Discord
