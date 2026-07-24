@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import {
   BookOpen,
@@ -17,8 +17,82 @@ import heroBg from "../assets/hero-bg.jpg";
 import ParticleCanvas from "../components/ParticleCanvas";
 import mainLogo from "../assets/main-logo.png";
 import altLogo from "../assets/alt-logo.png";
+import { Nav } from "../components/Nav";
+import { SectionEyebrow, OrnamentalDivider } from "../components/ui/SharedComponents";
 
 const DISCORD_URL = "https://discord.gg/wWxPTRv6eW";
+
+// Teaser milestones for the landing page
+const TEASER_MILESTONES = [
+  { title: "The Foundation", text: "Where the theory begins.", date: "2026-05-15" },
+  { title: "The Guild Is Born", text: "The theory enters the field.", date: "2026-07-01" },
+  { title: "The Archive Opens", text: "Dungeon Theory establishes its presence beyond Discord.", date: "2026-07-23" },
+];
+
+function JourneyTeaser() {
+  const formatDate = (dateString: string) => {
+    const date = new Date(dateString);
+    return date.toLocaleDateString("en-GB", {
+      day: "2-digit",
+      month: "short",
+      year: "numeric",
+    }).replace(/ /g, " ").toUpperCase();
+  };
+
+  return (
+    <section id="chronicles" className="relative py-24 sm:py-32">
+      <div className="mx-auto max-w-5xl px-4 sm:px-6">
+        <div className="mx-auto max-w-3xl text-center">
+          <SectionEyebrow>The Chronicle</SectionEyebrow>
+          <h2 className="mt-4 font-display text-4xl font-bold uppercase tracking-wider text-parchment sm:text-5xl">
+            The Journey <span className="gradient-gold-text">So Far</span>
+          </h2>
+          <div className="mx-auto mt-6 h-px w-24 bg-gold/50" />
+          <p className="mt-6 font-body text-base leading-relaxed text-muted-foreground">
+            Dungeon Theory began with a simple idea: every run has something to teach.
+            Since then, the community has grown, the guild has formed, and the archive
+            has opened its doors. The story is still being written.
+          </p>
+        </div>
+
+        <ol className="relative mt-16 space-y-6 before:absolute before:inset-y-0 before:left-4 before:w-px before:bg-gold/20 sm:before:left-4" role="list" aria-label="Journey milestones">
+          {TEASER_MILESTONES.map((m, i) => (
+            <li key={m.title} className="relative grid grid-cols-[2rem_1fr] items-center gap-x-5 sm:gap-x-6">
+              <span className="relative z-10 grid h-8 w-8 place-items-center justify-self-center rounded-full border border-gold/40 bg-obsidian font-display text-xs font-bold text-gold/70 transition-all hover:border-gold hover:text-gold">
+                {String(i + 1).padStart(2, "0")}
+              </span>
+              <div className="card-arcane card-arcane-hover group relative overflow-hidden rounded-xl p-5 sm:p-6">
+                <div className="flex items-center justify-between gap-4">
+                  <div className="flex-1 min-w-0">
+                    <time className="font-body text-xs uppercase tracking-widest text-gold/80" dateTime={m.date}>
+                      {formatDate(m.date)}
+                    </time>
+                    <h3 className="mt-1 font-display text-xl font-bold uppercase tracking-wider text-parchment group-hover:gradient-gold-text transition-colors">
+                      {m.title}
+                    </h3>
+                    <p className="mt-2 font-body text-sm leading-relaxed text-muted-foreground sm:text-base">
+                      {m.text}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </li>
+          ))}
+        </ol>
+
+        <div className="mt-12 text-center">
+          <Link
+            to="/chronicles"
+            className="btn-arcane inline-flex items-center gap-3 rounded-md px-8 py-3.5 font-display text-sm font-semibold uppercase tracking-[0.2em]"
+          >
+            <Sparkles className="h-4 w-4" aria-hidden="true" />
+            Read the Full Chronicle
+          </Link>
+        </div>
+      </div>
+    </section>
+  );
+}
 
 export const Route = createFileRoute("/")({
   component: LandingPage,
@@ -37,7 +111,7 @@ function LandingPage() {
       <CommunityVsGuild />
       <Theorybound />
       <Expect />
-      <Journey />
+      <JourneyTeaser />
       <FinalCTA />
       <Footer />
     </div>
@@ -45,108 +119,6 @@ function LandingPage() {
 }
 
 type LandingIcon = LucideIcon;
-
-/* ---------------- NAV ---------------- */
-function Nav() {
-  const [scrolled, setScrolled] = useState(false);
-  const [open, setOpen] = useState(false);
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 40);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
-
-  const links = [
-    { href: "#home", label: "Home" },
-    { href: "#philosophy", label: "Philosophy" },
-    { href: "#community", label: "Community" },
-    { href: "#guild", label: "Guild" },
-  ];
-
-  return (
-    <header
-      className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${
-        scrolled
-          ? "border-b border-gold/20 bg-obsidian/85 backdrop-blur-md"
-          : "bg-transparent"
-      }`}
-    >
-      <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8">
-        <a href="#home" className="flex min-w-0 items-center gap-3">
-          <img
-            src={altLogo}
-            alt="Dungeon Theory"
-            className="h-10 w-10 shrink-0 rounded-full ring-1 ring-gold/40"
-            width={40}
-            height={40}
-          />
-          <span className="hidden font-display text-sm font-bold uppercase tracking-[0.25em] text-parchment sm:inline">
-            Dungeon <span className="text-gold">Theory</span>
-          </span>
-        </a>
-
-        <nav className="hidden items-center gap-8 md:flex">
-          {links.map((l) => (
-            <a
-              key={l.href}
-              href={l.href}
-              className="font-body text-sm uppercase tracking-widest text-muted-foreground transition-colors hover:text-gold"
-            >
-              {l.label}
-            </a>
-          ))}
-        </nav>
-
-        <div className="flex items-center gap-2">
-          <a
-            href={DISCORD_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn-gold hidden rounded-md px-4 py-2 text-xs font-semibold uppercase tracking-widest sm:inline-flex"
-          >
-            Join Discord
-          </a>
-          <button
-            aria-label="Open menu"
-            className="grid h-10 w-10 place-items-center rounded-md border border-gold/30 text-gold md:hidden"
-            onClick={() => setOpen((v) => !v)}
-          >
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-              {open ? <path d="M6 6l12 12M18 6L6 18" /> : <><path d="M4 7h16" /><path d="M4 12h16" /><path d="M4 17h16" /></>}
-            </svg>
-          </button>
-        </div>
-      </div>
-
-      {open && (
-        <div className="border-t border-gold/20 bg-obsidian/95 backdrop-blur-lg md:hidden">
-          <div className="flex flex-col gap-1 px-6 py-4">
-            {links.map((l) => (
-              <a
-                key={l.href}
-                href={l.href}
-                onClick={() => setOpen(false)}
-                className="rounded-md px-2 py-3 font-body text-sm uppercase tracking-widest text-parchment hover:bg-arcane/10 hover:text-gold"
-              >
-                {l.label}
-              </a>
-            ))}
-            <a
-              href={DISCORD_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn-gold mt-2 rounded-md px-4 py-3 text-center text-xs font-semibold uppercase tracking-widest"
-            >
-              Join Discord
-            </a>
-          </div>
-        </div>
-      )}
-    </header>
-  );
-}
 
 /* ---------------- HERO ---------------- */
 function Hero() {
@@ -221,25 +193,6 @@ function Hero() {
 
       <OrnamentalDivider className="mt-20" />
     </section>
-  );
-}
-
-/* ---------------- Section header ---------------- */
-function SectionEyebrow({ children }: { children: React.ReactNode }) {
-  return (
-    <p className="font-body text-xs uppercase tracking-[0.4em] text-gold">— {children} —</p>
-  );
-}
-
-function OrnamentalDivider({ className = "" }: { className?: string }) {
-  return (
-    <div className={`mx-auto flex max-w-3xl items-center gap-4 px-6 ${className}`}>
-      <div className="divider-gold flex-1" />
-      <svg width="20" height="20" viewBox="0 0 20 20" className="text-gold" fill="currentColor">
-        <path d="M10 0 L12 8 L20 10 L12 12 L10 20 L8 12 L0 10 L8 8 Z" opacity="0.9" />
-      </svg>
-      <div className="divider-gold flex-1" />
-    </div>
   );
 }
 
@@ -496,47 +449,6 @@ function Expect() {
             </div>
           ))}
         </div>
-      </div>
-    </section>
-  );
-}
-
-/* ---------------- JOURNEY ---------------- */
-function Journey() {
-  const chapters = [
-    { title: "Foundation", text: "The community begins. First adventurers gather at the table." },
-    { title: "The First Hundred", text: "The archive grows. Guides are written. Parties form." },
-    { title: "Theorybound", text: "The community becomes a guild. The Sworn Order takes shape." },
-    { title: "The Next Chapter", text: "Still being written — by every adventurer who joins us." },
-  ];
-  return (
-    <section className="relative py-24 sm:py-32">
-      <div className="mx-auto max-w-5xl px-4 sm:px-6">
-        <div className="mx-auto max-w-3xl text-center">
-          <SectionEyebrow>The Chronicle</SectionEyebrow>
-          <h2 className="mt-4 font-display text-4xl font-bold uppercase tracking-wider text-parchment sm:text-5xl">
-            The Journey Has <span className="gradient-gold-text">Just Begun</span>
-          </h2>
-          <div className="mx-auto mt-6 h-px w-24 bg-gold/50" />
-        </div>
-
-        <ol className="relative mt-16 space-y-8 before:absolute before:inset-y-0 before:left-4 before:w-px before:bg-gold/20 sm:before:left-4">
-          {chapters.map((c, i) => (
-            <li key={c.title} className="relative grid grid-cols-[2rem_1fr] items-center gap-x-5 sm:gap-x-6">
-              <span className="relative z-10 grid h-8 w-8 place-items-center justify-self-center rounded-full border border-gold/60 bg-obsidian font-display text-xs font-bold text-gold">
-                {String(i + 1).padStart(2, "0")}
-              </span>
-              <div className="card-arcane rounded-lg p-5 sm:p-6">
-                <h3 className="font-display text-xl font-bold uppercase tracking-wider text-parchment">
-                  {c.title}
-                </h3>
-                <p className="mt-2 font-body text-sm leading-relaxed text-muted-foreground sm:text-base">
-                  {c.text}
-                </p>
-              </div>
-            </li>
-          ))}
-        </ol>
       </div>
     </section>
   );
