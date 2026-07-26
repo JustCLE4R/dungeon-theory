@@ -7,7 +7,9 @@
     "summary": "Where the theory begins.",
     "category": "foundation",
     "content": "Dungeon Theory began as a community built around a simple idea: every run has something to teach.\n\nA small group of Albion Online adventurers gathered in Discord, united by the belief that dungeon mastery comes not from raw power, but from understanding. They shared guides, dissected mechanics, and welcomed questions that others might dismiss.\n\nWhat started as a handful of players grew into a place where veterans taught newcomers, where failed runs became data, and where the phrase \"learn together, grow together\" wasn't just a motto—it was the method.",
-    "image": null
+    "images": [
+      "https://avatars.githubusercontent.com/u/84244126", "https://github.githubassets.com/assets/gc_banner_dark-7d4e2900eeba.png", "https://github.githubassets.com/assets/gc_banner_dark-7d4e2900eeba.png", "https://github.githubassets.com/assets/gc_banner_dark-7d4e2900eeba.png", "https://github.githubassets.com/assets/gc_banner_dark-7d4e2900eeba.png", "https://github.githubassets.com/assets/gc_banner_dark-7d4e2900eeba.png"
+    ]
   },
   {
     "id": "first-gathering",
@@ -16,7 +18,7 @@
     "summary": "The first adventurers gather at the table.",
     "category": "community",
     "content": "Two weeks after the community formed, the first organized dungeon run took place.\n\nIt wasn't a speed clear. It wasn't a record attempt. It was a learning run—deliberate, patient, and full of questions. \"Why did that mechanic trigger?\" \"What happens if we position here?\" \"Let's try it again.\"\n\nThat run established the template: every expedition is a lesson. Every participant, regardless of experience, contributes to the collective understanding. The First Gathering proved the theory works in practice.",
-    "image": null
+    "images": []
   },
   {
     "id": "first-hundred",
@@ -25,7 +27,7 @@
     "summary": "The community reaches its first major milestone.",
     "category": "milestone",
     "content": "Dungeon Theory reached 100 members.\n\nThe milestone marked more than a number. It showed that the idea of learning, improving, and playing together had found a community willing to grow with it. Guides were written. Parties formed daily. The archive of knowledge expanded.\n\nEach new member brought a question, a perspective, or a willingness to teach. The hundred weren't just names on a roster—they were the foundation of what would become the Theorybound.",
-    "image": null
+    "images": []
   },
   {
     "id": "guild-formation",
@@ -34,7 +36,7 @@
     "summary": "The theory enters the field.",
     "category": "guild",
     "content": "Dungeon Theory evolved beyond a community and established itself as a guild.\n\nThe Sworn Order formed—adventurers who didn't just study the theory but lived it. They committed to consistent play, dedicated parties, and long-term progression together. The guild wasn't a separate entity from the community; it was the community taking the next step.\n\nGuild-exclusive activities began: coordinated progression weeks, theory-crafting sessions, and a shared identity. To be Theorybound became a distinction earned through dedication.",
-    "image": null
+    "images": []
   },
   {
     "id": "archive-launch",
@@ -43,7 +45,7 @@
     "summary": "Dungeon Theory establishes its presence beyond Discord.",
     "category": "website",
     "content": "The Dungeon Theory website launches, creating a permanent home for the community's accumulated knowledge.\n\nNo longer confined to chat history and pinned messages, the guides, strategies, and stories found a structured archive. The Chronicles page you're reading now became the official historical record.\n\nThis wasn't just a website launch. It was a statement: Dungeon Theory is here to stay. The journey has a past worth preserving and a future worth building.",
-    "image": null
+    "images": ["https://github.githubassets.com/assets/gc_banner_dark-7d4e2900eeba.png"]
   }
 ]
     }

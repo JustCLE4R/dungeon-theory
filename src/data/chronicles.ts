@@ -5,7 +5,7 @@ export interface ChronicleEvent {
   summary: string;
   category: string;
   content: string;
-  image: string | null;
+  images?: string[];
 }
 
 import chroniclesData from "./chronicles.json";
