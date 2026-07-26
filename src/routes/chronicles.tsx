@@ -26,7 +26,7 @@ export const Route = createFileRoute("/chronicles")({
 function ChroniclesPage() {
   return (
     <div className="min-h-screen overflow-x-hidden bg-background text-foreground">
-      <Nav isChroniclesPage />
+      <Nav />
       <section className="relative isolate overflow-hidden pt-28 pb-16 sm:pt-32 sm:pb-24">
         <div className="absolute inset-0 -z-10 gradient-hero" />
         <div

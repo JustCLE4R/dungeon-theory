@@ -11,6 +11,7 @@ import {
   Swords,
   Trophy,
   Users,
+  BookMarked,
   type LucideIcon,
 } from "lucide-react";
 import heroBg from "../assets/hero-bg.jpg";
@@ -22,78 +23,6 @@ import { Footer } from "../components/Footer";
 import { SectionEyebrow, OrnamentalDivider } from "../components/ui/SharedComponents";
 
 const DISCORD_URL = "https://discord.gg/wWxPTRv6eW";
-
-// Teaser milestones for the landing page
-const TEASER_MILESTONES = [
-  { title: "The Foundation", text: "Where the theory begins.", date: "2026-05-15" },
-  { title: "The Guild Is Born", text: "The theory enters the field.", date: "2026-07-01" },
-  { title: "The Archive Opens", text: "Dungeon Theory establishes its presence beyond Discord.", date: "2026-07-23" },
-];
-
-function JourneyTeaser() {
-  const formatDate = (dateString: string) => {
-    const date = new Date(dateString);
-    return date.toLocaleDateString("en-GB", {
-      day: "2-digit",
-      month: "short",
-      year: "numeric",
-    }).replace(/ /g, " ").toUpperCase();
-  };
-
-  return (
-    <section id="chronicles" className="relative py-24 sm:py-32">
-      <div className="mx-auto max-w-5xl px-4 sm:px-6">
-        <div className="mx-auto max-w-3xl text-center">
-          <SectionEyebrow>The Chronicle</SectionEyebrow>
-          <h2 className="mt-4 font-display text-4xl font-bold uppercase tracking-wider text-parchment sm:text-5xl">
-            The Journey <span className="gradient-gold-text">So Far</span>
-          </h2>
-          <div className="mx-auto mt-6 h-px w-24 bg-gold/50" />
-          <p className="mt-6 font-body text-base leading-relaxed text-muted-foreground">
-            Dungeon Theory began with a simple idea: every run has something to teach.
-            Since then, the community has grown, the guild has formed, and the archive
-            has opened its doors. The story is still being written.
-          </p>
-        </div>
-
-        <ol className="relative mt-16 space-y-6 before:absolute before:inset-y-0 before:left-4 before:w-px before:bg-gold/20 sm:before:left-4" role="list" aria-label="Journey milestones">
-          {TEASER_MILESTONES.map((m, i) => (
-            <li key={m.title} className="relative grid grid-cols-[2rem_1fr] items-center gap-x-5 sm:gap-x-6">
-              <span className="relative z-10 grid h-8 w-8 place-items-center justify-self-center rounded-full border border-gold/40 bg-obsidian font-display text-xs font-bold text-gold/70 transition-all hover:border-gold hover:text-gold">
-                {String(i + 1).padStart(2, "0")}
-              </span>
-              <div className="card-arcane card-arcane-hover group relative overflow-hidden rounded-xl p-5 sm:p-6">
-                <div className="flex items-center justify-between gap-4">
-                  <div className="flex-1 min-w-0">
-                    <time className="font-body text-xs uppercase tracking-widest text-gold/80" dateTime={m.date}>
-                      {formatDate(m.date)}
-                    </time>
-                    <h3 className="mt-1 font-display text-xl font-bold uppercase tracking-wider text-parchment group-hover:gradient-gold-text transition-colors">
-                      {m.title}
-                    </h3>
-                    <p className="mt-2 font-body text-sm leading-relaxed text-muted-foreground sm:text-base">
-                      {m.text}
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </li>
-          ))}
-        </ol>
-
-        <div className="mt-12 text-center">
-          <Link
-            to="/chronicles"
-            className="btn-arcane inline-flex items-center gap-3 rounded-md px-8 py-3.5 font-display text-sm font-semibold uppercase tracking-[0.2em]"
-          >
-            <Sparkles className="h-4 w-4" aria-hidden="true" />
-            Read the Full Chronicle
-          </Link>
-        </div>
-      </div>
-    </section>
-  );
-}
 
 export const Route = createFileRoute("/")({
   component: LandingPage,
@@ -456,6 +385,42 @@ function Expect() {
               <p className="font-body text-sm leading-relaxed text-muted-foreground">{it.text}</p>
             </div>
           ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ---------------- JOURNEY TEASER ---------------- */
+function JourneyTeaser() {
+  return (
+    <section id="chronicles" className="relative py-24 sm:py-32">
+      <div className="mx-auto max-w-5xl px-4 sm:px-6">
+        <div className="mx-auto max-w-3xl text-center">
+          <SectionEyebrow>The Chronicle</SectionEyebrow>
+          <h2 className="mt-4 font-display text-4xl font-bold uppercase tracking-wider text-parchment sm:text-5xl">
+            The Journey <span className="gradient-gold-text">So Far</span>
+          </h2>
+          <div className="mx-auto mt-6 h-px w-24 bg-gold/50" />
+          <p className="mt-6 font-body text-base leading-relaxed text-muted-foreground">
+            Every theory has a beginning.
+          </p>
+          <p className="mt-4 font-body text-base leading-relaxed text-muted-foreground">
+            Dungeon Theory began with a simple idea: every run has something to teach.
+            <br />
+            Since then, the community has grown, the guild has been formed, and the story
+            continues to be written.
+          </p>
+        </div>
+
+        <div className="mt-12 text-center">
+          <Link
+            to="/chronicles"
+            className="btn-arcane inline-flex items-center gap-3 rounded-md px-8 py-3.5 font-display text-sm font-semibold uppercase tracking-[0.2em]"
+          >
+            <BookMarked className="h-4 w-4" aria-hidden="true" />
+            Read the Full Chronicle
+          </Link>
         </div>
       </div>
     </section>

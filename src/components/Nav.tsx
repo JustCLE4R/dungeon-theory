@@ -4,11 +4,7 @@ import altLogo from "../assets/alt-logo.png";
 
 const DISCORD_URL = "https://discord.gg/wWxPTRv6eW";
 
-interface NavProps {
-  isChroniclesPage?: boolean;
-}
-
-export function Nav({ isChroniclesPage = false }: NavProps) {
+export function Nav() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
 
@@ -31,7 +27,7 @@ export function Nav({ isChroniclesPage = false }: NavProps) {
   return (
     <header
       className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${
-        scrolled || isChroniclesPage
+        scrolled
           ? "border-b border-gold/20 bg-obsidian/85 backdrop-blur-md"
           : "bg-transparent"
       }`}
