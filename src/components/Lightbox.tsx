@@ -74,7 +74,7 @@ export function Lightbox({
           e.stopPropagation();
           onClose();
         }}
-        className="absolute top-4 right-4 z-10 p-2 rounded-full bg-black/50 hover:bg-black/70 text-parchment transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-gold"
+        className="absolute top-4 right-4 z-10 p-2 rounded-full bg-black/50 hover:bg-black/70 text-parchment transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-gold cursor-pointer"
         aria-label="Close image viewer"
       >
         <X className="w-6 h-6" />
@@ -88,7 +88,7 @@ export function Lightbox({
               e.stopPropagation();
               setCurrentIndex((prev) => (prev - 1 + images.length) % images.length);
             }}
-            className="absolute left-4 z-10 p-3 rounded-full bg-black/50 hover:bg-black/70 text-parchment transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-gold hidden sm:flex"
+            className="absolute left-4 z-10 p-3 rounded-full bg-black/50 hover:bg-black/70 text-parchment transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-gold hidden sm:flex cursor-pointer"
             aria-label="Previous image"
           >
             <ChevronLeft className="w-6 h-6" />
@@ -98,7 +98,7 @@ export function Lightbox({
               e.stopPropagation();
               setCurrentIndex((prev) => (prev + 1) % images.length);
             }}
-            className="absolute right-4 z-10 p-3 rounded-full bg-black/50 hover:bg-black/70 text-parchment transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-gold hidden sm:flex"
+            className="absolute right-4 z-10 p-3 rounded-full bg-black/50 hover:bg-black/70 text-parchment transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-gold hidden sm:flex cursor-pointer"
             aria-label="Next image"
           >
             <ChevronRight className="w-6 h-6" />
