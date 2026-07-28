@@ -67,9 +67,13 @@ export function ChronicleEntry({ event, isOpen, onToggle, isLast }: ChronicleEnt
         className={cn(
           "relative rounded-xl border border-gold/20 bg-obsidian/60 transition-all duration-500 ease-in-out",
           "hover:border-gold/40 hover:bg-obsidian/80",
-          isOpen && "ring-1 ring-gold/20"
-        )}
-      >
+                isOpen && "ring-2 ring-gold/50 shadow-[0_0_24px_ogkch(0.72_0.13_80/0.4)]",
+                isOpen && "border-gold/50 bg-obsidian/90"
+              )}
+              style={{
+                boxShadow: isOpen ? "0 0 32px -4px oklch(0.72 0.13 80 / 0.35), 0 0 64px -8px oklch(0.72 0.13 80 / 0.2)" : undefined,
+              }}
+            >
         <button
           type="button"
           onClick={onToggle}

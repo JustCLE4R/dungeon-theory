@@ -18,6 +18,13 @@ export function Lightbox({
   const [currentIndex, setCurrentIndex] = useState(initialIndex);
   const previousBodyOverflow = useRef<string>("");
 
+  // Reset index when lightbox opens
+  useEffect(() => {
+    if (isOpen) {
+      setCurrentIndex(initialIndex);
+    }
+  }, [isOpen, initialIndex]);
+
   const handleKeyDown = useCallback((e: KeyboardEvent) => {
     if (e.key === "Escape") {
       onClose();
