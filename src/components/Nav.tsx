@@ -27,16 +27,11 @@ export function Nav() {
   return (
     <header
       className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${
-        scrolled
-          ? "border-b border-gold/20 bg-obsidian/85 backdrop-blur-md"
-          : "bg-transparent"
+        scrolled ? "border-b border-gold/20 bg-obsidian/85 backdrop-blur-md" : "bg-transparent"
       }`}
     >
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8">
-        <Link
-          to="/"
-          className="flex min-w-0 items-center gap-3"
-        >
+        <Link to="/" className="flex min-w-0 items-center gap-3">
           <img
             src={altLogo}
             alt="Dungeon Theory"
@@ -81,8 +76,23 @@ export function Nav() {
             className="grid h-10 w-10 place-items-center rounded-md border border-gold/30 text-gold md:hidden"
             onClick={() => setOpen((v) => !v)}
           >
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-              {open ? <path d="M6 6l12 12M18 6L6 18" /> : <><path d="M4 7h16" /><path d="M4 12h16" /><path d="M4 17h16" /></>}
+            <svg
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+            >
+              {open ? (
+                <path d="M6 6l12 12M18 6L6 18" />
+              ) : (
+                <>
+                  <path d="M4 7h16" />
+                  <path d="M4 12h16" />
+                  <path d="M4 17h16" />
+                </>
+              )}
             </svg>
           </button>
         </div>

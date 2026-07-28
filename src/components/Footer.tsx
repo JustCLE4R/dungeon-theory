@@ -47,7 +47,8 @@ export function Footer({
               </div>
             </div>
             <p className="mt-5 max-w-md font-body text-sm leading-relaxed text-muted-foreground">
-              An Albion Online community and guild built around knowledge, teamwork, and progression.
+              An Albion Online community and guild built around knowledge, teamwork, and
+              progression.
             </p>
           </div>
 
@@ -88,9 +89,7 @@ export function Footer({
 
         {showDivider && <OrnamentalDivider className="mt-12" />}
 
-        <p className="mt-6 text-center font-body text-xs text-muted-foreground">
-          {copyrightText}
-        </p>
+        <p className="mt-6 text-center font-body text-xs text-muted-foreground">{copyrightText}</p>
       </div>
     </footer>
   );

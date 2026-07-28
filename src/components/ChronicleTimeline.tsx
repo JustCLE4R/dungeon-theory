@@ -1,4 +1,4 @@
-import { Feather } from "lucide-react";
+import { Feather, Infinity } from "lucide-react";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
 import chroniclesDataRaw from "@/data/chronicles.json";
@@ -39,7 +39,7 @@ export function ChronicleTimeline() {
 
   // Check which year has an open event
   const yearWithOpenEvent = years.find((year) =>
-    groupedByYear[year].some((event) => openIds.includes(event.id))
+    groupedByYear[year].some((event) => openIds.includes(event.id)),
   );
 
   return (
@@ -48,14 +48,14 @@ export function ChronicleTimeline() {
         const yearEvents = groupedByYear[year];
         const isYearOpen = year === yearWithOpenEvent;
         return (
-          <li key={year} className="relative">
+          <li key={year} className="relative min-w-0">
             <div className="relative grid grid-cols-[1.5rem_1fr] gap-x-3 sm:grid-cols-[2rem_1fr] sm:gap-x-5 md:gap-x-6 items-start">
               <div className="relative z-10 flex flex-col items-center">
                 <span
                   className={cn(
                     "relative z-10 grid h-8 w-8 place-items-center justify-self-center rounded-full border-2 bg-obsidian text-gold font-display text-[0.65rem] font-bold sm:h-10 sm:w-10 sm:text-xs transition-all duration-500 ease-in-out",
                     isYearOpen &&
-                      "border-gold/60 text-gold shadow-[0_0_16px_oklch(0.72_0.13_80/0.6)] animate-pulse-gold"
+                      "border-gold/60 text-gold shadow-[0_0_16px_oklch(0.72_0.13_80/0.6)] animate-pulse-gold",
                   )}
                 >
                   {year}
@@ -89,11 +89,11 @@ export function ChronicleTimeline() {
         );
       })}
 
-      <li className="relative">
+      <li className="relative min-w-0">
         <div className="relative grid grid-cols-[1.5rem_1fr] gap-x-3 sm:grid-cols-[2rem_1fr] sm:gap-x-5 md:gap-x-6 items-start">
           <div className="relative z-10 flex flex-col items-center pt-2">
             <span className="relative z-10 grid h-8 w-8 place-items-center justify-self-center rounded-full border-2 border-gold/50 bg-obsidian text-gold/50 font-display text-[0.55rem] font-bold sm:h-10 sm:w-10 sm:text-[0.65rem]">
-              ∞
+              <Infinity className="h-6 w-6" aria-hidden="true" />
             </span>
           </div>
 
